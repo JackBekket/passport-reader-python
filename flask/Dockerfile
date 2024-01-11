@@ -12,4 +12,4 @@ WORKDIR /flask
 RUN mkdir /uploads
 
 RUN pip install -r requirements.txt
-CMD ["python", "app.py"]
+CMD ["python", "app.py","--host=0.0.0.0"]

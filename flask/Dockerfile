@@ -15,5 +15,5 @@ RUN pip install -r requirements.txt
 
 # Set the environment variable
 ENV FLASK_APP=app.py
-CMD [ "flask", "run", "--host=0.0.0.0"]
+CMD [ "flask", "run"]
 #CMD ["python", "app.py","--host=0.0.0.0"]

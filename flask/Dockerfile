@@ -1,4 +1,4 @@
-FROM python:3.9-slim-stretch
+FROM python:3.9
 
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -y make
 

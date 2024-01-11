@@ -2,4 +2,4 @@ Flask==1.0.2
 PassportEye==1.4.0
 pillow==6.0.0
 pytesseract==0.2.6
-opencv-python==4.5.58
+opencv-python==4.5.4.58

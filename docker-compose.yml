@@ -2,7 +2,10 @@ version: '3'
 services:
     web:
         build: ./flask
+        context: .
+        dockerfile: Dockerfile
         ports:
             - "5000:5000"
         volumes:
             - ./flask:/flask
+        restart: always

@@ -46,6 +46,8 @@ def process():
     if not imagefile:
         return make_response("Missing file parameter", 400)
 
+    # check that file pathes are exist
+    check_create_directories()
     filename = secure_filename(imagefile.filename)
     full_path = os.path.join(UPLOAD_FOLDER, filename)
     imagefile.save(full_path)
@@ -105,6 +107,28 @@ def clean_name(name):
     pattern = re.compile('([^\s\w]|_)+')
     name = pattern.sub('', name)
     return name.strip()
+
+def check_create_directories():
+    # Directory paths
+    uploads_dir = UPLOAD_FOLDER
+    edit_dir = EDIT_FOLDER
+
+    # Check if directories exist
+    if not os.path.isdir(uploads_dir):
+        print(f"Directory '{uploads_dir}' does not exist. Creating...")
+        os.makedirs(uploads_dir)
+        print(f"Directory '{uploads_dir}' created successfully.")
+    else:
+        print(f"Directory '{uploads_dir}' already exists.")
+
+    if not os.path.isdir(edit_dir):
+        print(f"Directory '{edit_dir}' does not exist. Creating...")
+        os.makedirs(edit_dir)
+        print(f"Directory '{edit_dir}' created successfully.")
+    else:
+        print(f"Directory '{edit_dir}' already exists.")
+
+
 
 def image_to_string(img_path):
     """Convert image to text using tesseract OCR"""

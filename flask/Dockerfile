@@ -14,6 +14,6 @@ RUN mkdir /uploads
 RUN pip install -r requirements.txt
 
 # Set the environment variable
-ENV FLASK_APP=app.py
+#ENV FLASK_APP=app.py
 #CMD [ "flask", "run"]
 CMD ["python", "app.py","--host=0.0.0.0"]

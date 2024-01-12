@@ -11,11 +11,52 @@ THIS APP ONLY SERVES TO DEMONSTRATE THE BASIC USE OF [PassportEye](https://pypi.
 ## Prerequisite
 First of all, make sure you have [Docker](https://docs.docker.com/engine/installation/) Engine installed in your system.
 
+For naked python run you need virtual python env (conda) with python v3.9
+
 ## Quickstart
 Just clone the repo and build the app with docker compose.
 ```
 docker-compose up --build
 ```
+
+## Troubleshooting
+Notes from Bekket:
+1. docker-compose did not work properly, probably because bad enviroment for compose.yaml file.
+2. docker build works properly most of times
+3. still you can't run docker image as it says that ` http invalid host header`. I don't know how to workaround about it.
+4. you still can run this without docker, as a python app.
+
+## Run as python app
+0. prepare pre-requirements. Docker file contains pkgs that should be installed in virtual enviroment. if we are not using docker, than we need to install them manually. just copy commands from docker file.
+1. install miniconda
+```
+mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm -rf ~/miniconda3/miniconda.sh
+~/miniconda3/bin/conda init bash
+~/miniconda3/bin/conda init zsh
+```
+2. create virtual python enviroment
+```
+conda create --name p39 python=3.9
+conda activate p39
+
+```
+
+3. install deps
+`cd flask`
+`pip install -r requirements.txt`
+
+4. run in dev / production mode
+in dev mode
+`flask run` -- will listen at localhost only, in this case you need nginx to forward routes. 
+`python3 app.py` -- will listen at all availables interfaces. if run from remote VPS will also listen to VPS public ip (port 80,5000)
+
+## Bugs
+12.01.2024 -- docker build should create directory structure for app, but as we are not using docker build, then there are no such structure, which causes app to panic as there are no uploaded files or directories.
+
+
 ## Endpoint `http://0.0.0.0:5000/process`
 This is the only one endpoint of this app and accept one `POST` parameter :
 - `imagefile` : An image file of the passport. For mobile app, we can use the camera.

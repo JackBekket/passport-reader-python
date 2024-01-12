@@ -11,8 +11,8 @@ WORKDIR /flask
 
 RUN wget https://github.com/tesseract-ocr/tessdata/raw/main/eng.traineddata
 RUN wget https://github.com/tesseract-ocr/tessdata/raw/main/rus.traineddata
-RUN mv -v eng.traineddata /usr/share/tesseract-ocr/4.00/tessdata/
-RUN mv -v rus.traineddata /usr/share/tesseract-ocr/4.00/tessdata/
+#RUN mv -v eng.traineddata /usr/share/tesseract-ocr/4.00/tessdata/
+#RUN mv -v rus.traineddata /usr/share/tesseract-ocr/4.00/tessdata/
 
 RUN mkdir /uploads
 

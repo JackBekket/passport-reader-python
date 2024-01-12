@@ -28,6 +28,15 @@ Notes from Bekket:
 
 ## Run as python app
 0. prepare pre-requirements. Docker file contains pkgs that should be installed in virtual enviroment. if we are not using docker, than we need to install them manually. just copy commands from docker file.
+Additionally make sure you get tesseract language files installed:
+```
+wget https://github.com/tesseract-ocr/tessdata/raw/main/eng.traineddata
+wget https://github.com/tesseract-ocr/tessdata/raw/main/rus.traineddata
+
+sudo mv -v eng.traineddata /usr/share/tesseract-ocr/4.00/tessdata/
+sudo mv -v rus.traineddata /usr/share/tesseract-ocr/4.00/tessdata/
+
+```
 1. install miniconda
 ```
 mkdir -p ~/miniconda3
@@ -53,8 +62,7 @@ in dev mode
 `flask run` -- will listen at localhost only, in this case you need nginx to forward routes. 
 `python3 app.py` -- will listen at all availables interfaces. if run from remote VPS will also listen to VPS public ip (port 80,5000)
 
-## Bugs
-12.01.2024 -- docker build should create directory structure for app, but as we are not using docker build, then there are no such structure, which causes app to panic as there are no uploaded files or directories.
+
 
 
 ## Endpoint `http://0.0.0.0:5000/process`
